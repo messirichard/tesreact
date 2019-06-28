@@ -22,6 +22,7 @@ export default class PersonList extends React.Component {
       }
       
       var arr = [];
+      // var result = [];
       
       axios.get(`https://api.myjson.com/bins/e76pl`)
         .then(res => {
@@ -34,25 +35,16 @@ export default class PersonList extends React.Component {
         });
       });
       
-      console.log(arr);
-      //   const result = Object.values(arr).map(value => {
-      //     // if( this.state.name ==  value.name){
-      //       result.push( value);
-      //     // }
-      //   });
-
-      // console.log(result);
-
-      const result = Object.values(arr).reduce((prevArr, value) => {
-        return prevArr.concat(value)
-        // if (this.state.name ==  value.name) {
-        //     return prevArr.concat(value.name)
-        // } else {
-        //     return prevArr
-        // }
+      // console.log(arr);
+      const result = arr.reduce((prevArr, value) => {
+          if (this.state.name ==  value.name) {
+              return prevArr.concat(value.name)
+          } else {
+              return prevArr
+          }
       }, [])
-    
-    console.log(result)
+      
+      console.log(result)
       
     }
     
