@@ -10,11 +10,6 @@ export default class PersonList extends React.Component {
     telp:'',
   }
 
-  handleChange = event => {
-    this.setState({ name: event.target.value });
-    this.setState({ telp: event.target.value });
-  }
-
   handleSubmit = event => {
     event.preventDefault();
     const user = {
@@ -29,23 +24,23 @@ export default class PersonList extends React.Component {
     axios.post(`https://api.myjson.com/bins/87rb5`, { 
         user  : user.name,
         phone : phone.telp
-    }) 
+    }).then(res => console.log(res)).catch(err => console.log(err.res))
   }
 
   render() {
     return (
-        <Form>
-          <Row form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit}>
+          <Row>
             <Col md={6}>
               <FormGroup>
                 <Label for="name">Name</Label>
-                <Input type="text" name="name" id="name" placeholder="Your Name" value={this.state.username} onChange={this.handleChange}/>
+                <Input type="text" name="name" id="name" placeholder="Your Name" value={this.state.name} onChange={e => this.setState({name: e.target.value})}/>
               </FormGroup>
             </Col>
             <Col md={6}>
               <FormGroup>
                 <Label for="Telp">Telp</Label>
-                <Input type="text" name="telp" id="Telp" placeholder="Your Telephone" value={this.state.username} onChange={this.handleChange}/>
+                <Input type="text" name="telp" id="Telp" placeholder="Your Telephone" value={this.state.telp} onChange={e => this.setState({telp: e.target.value})}/>
               </FormGroup>
             </Col>
             <Button type="submit">Submit</Button>

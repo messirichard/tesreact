@@ -18,18 +18,22 @@ export default class PersonList extends React.Component {
     }
     // console.log('adsfasdf');
     
-    // handleSubmit = event => {
-        // search = async val => {
-        //     this.setState({ loading: true });
-        //     const res = await axios(
-        //     `https://api.myjson.com/bins/e76pl`
-        //     );
-        //     const models = await res;
-        
-        //     this.setState({ models, loading: false });
-        // };
-    // };
-
+    onChangeHandler = async e => {
+      this.search(e.target.value);
+      this.setState({ value: e.target.value });
+    };
+    
+    handleSubmit = event => {
+      search = async val => {
+        this.setState({ loading: true });
+        const res = await axios(
+          `https://api.myjson.com/bins/87rb5`
+        );
+        const movies = await res.data.results;
+    
+        this.setState({ movies, loading: false });
+      };
+    }
     render() {
       return (
           <Form>
@@ -37,16 +41,10 @@ export default class PersonList extends React.Component {
               <Col md={12}>
                 <FormGroup>
                   <Label for="name">Search By Name</Label>
-                  <Input type="text" name="name" id="name" placeholder="Name" value={this.state.username} onChange={this.handleChange}/>
+                  <Input type="text" name="name" id="name" placeholder="Name" value={this.state.name} onChange={e => this.setState({name: e.target.value})}/>
                 </FormGroup>
               </Col>
               <Button type="submit">Search</Button>
-              <div>
-                { this.state.persons.map(person => 
-                <div>
-                {person.name+" "+person.telp}
-                </div>)}
-                </div>
             </Row>
           </Form>
       )

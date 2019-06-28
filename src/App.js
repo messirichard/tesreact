@@ -30,7 +30,7 @@ class Ex1 extends Component {
   render() {
     return (
       <div className="prelative container">
-        {/* <Blacklist_post /> */}
+        <Blacklist_post />
         {/* <Blacklist_get /> */}
         <Blacklist_search />
       </div>
